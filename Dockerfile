@@ -17,7 +17,8 @@ RUN set -ex \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # conf
-ADD assets.tgz /root
+COPY .zshrc /root/
+COPY .zshrc.d /root/
 
 ENV just_version=0.4.4
 RUN set -ex \
