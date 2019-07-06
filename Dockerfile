@@ -17,8 +17,8 @@ RUN set -ex \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # conf
-COPY .zshrc /root/
-COPY .zshrc.d /root/
+COPY .zshrc /root/.zshrc
+COPY .zshrc.d /root/.zshrc.d
 
 ENV just_version=0.4.4
 RUN set -ex \
