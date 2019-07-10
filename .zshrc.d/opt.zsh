@@ -17,4 +17,4 @@ bindkey -e
 bindkey "\e[3~" delete-char
 
 #以下字符视为单词的一部分
-WORDCHARS='*[]~/#%^(){}<>'
+WORDCHARS='*[]~#%^(){}<>'
