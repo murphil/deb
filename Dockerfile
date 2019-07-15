@@ -1,13 +1,21 @@
 FROM debian:buster-slim
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TIMEZONE=Asia/Shanghai
-COPY sources.list /etc/apt/sources.list
 
 RUN set -ex \
   ; apt-get update \
   ; apt-get upgrade -y \
   ; DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends ca-certificates \
+  ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+COPY sources.list /etc/apt/sources.list
+
+RUN set -ex \
+  ; apt-get update \
+  ; apt-get upgrade -y \
+  ; DEBIAN_FRONTEND=noninteractive \
+    apt-get install -y --no-install-recommends \
       dpkg tzdata sudo wget iproute2 openssh-client mlocate procps \
       curl bzip2 unzip grep sed git zsh neovim build-essential \
       tree jq httpie lsb-release \
