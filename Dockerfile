@@ -31,7 +31,7 @@ RUN set -ex \
     | tar zxf - -C /usr/local/bin just
 
 # conf
-COPY home/* /root/
+COPY home /root/
 
 WORKDIR /root
 
