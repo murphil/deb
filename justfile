@@ -11,3 +11,6 @@ assets:
         --transform 's|^_\(.*\)|.\1|' \
         -C ${CFG} \
         _zshrc .zshrc.d/ _vimrc.d
+
+test:
+    docker build . -t tt -f Dockerfile-test
