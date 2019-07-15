@@ -1,9 +1,10 @@
 cp cfg="~/pub/Configuration":
-    rm -rf .zshrc.d .zshrc
-    cp -R {{cfg}}/_zshrc .zshrc
-    cp -R {{cfg}}/.zshrc.d .zshrc.d
-    cp -R {{cfg}}/_vimrc .vimrc
-    cp -R {{cfg}}/_tmux.conf .tmux.conf
+    rm -rf home
+    mkdir home
+    cp -R {{cfg}}/_zshrc home/.zshrc
+    cp -R {{cfg}}/.zshrc.d home/.zshrc.d
+    cp -R {{cfg}}/_vimrc home/.vimrc
+    cp -R {{cfg}}/_tmux.conf home/.tmux.conf
 
 assets:
     tar hzcvf assets.tgz \

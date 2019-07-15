@@ -1,6 +1,7 @@
 FROM debian:buster-slim
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TIMEZONE=Asia/Shanghai
+COPY sources.list /etc/apt/sources.list
 
 RUN set -ex \
   ; apt-get update \
@@ -22,10 +23,7 @@ RUN set -ex \
     | tar zxf - -C /usr/local/bin just
 
 # conf
-COPY .zshrc /root/.zshrc
-COPY .zshrc.d /root/.zshrc.d
-COPY .vimrc /root/.vimrc
-#COPY .tmux.conf /root/.tmux.conf
+COPY home/* /root
 
 WORKDIR /root
 
