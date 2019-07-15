@@ -24,6 +24,8 @@ RUN set -ex \
 # conf
 COPY .zshrc /root/.zshrc
 COPY .zshrc.d /root/.zshrc.d
+COPY .vimrc /root/.vimrc
+#COPY .tmux.conf /root/.tmux.conf
 
 WORKDIR /root
 

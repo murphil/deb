@@ -2,7 +2,7 @@ function cfg.tgz {
     tar hzcvf - \
              --transform 's|^_\(.*\)|.\1|' \
              -C $CFG \
-    _zshrc .zshrc.d/ \
+    _zshrc .zshrc.d/ _vimrc \
     .ext.zsh .kubectl.zsh _tmux.conf .fzf/
 }
 
