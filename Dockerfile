@@ -7,15 +7,6 @@ RUN set -ex \
   ; apt-get upgrade -y \
   ; DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends ca-certificates \
-  ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
-COPY sources.list /etc/apt/sources.list
-
-RUN set -ex \
-  ; apt-get update \
-  ; apt-get upgrade -y \
-  ; DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends \
       dpkg tzdata sudo wget iproute2 openssh-client mlocate procps \
       curl bzip2 unzip grep sed git zsh neovim build-essential \
       tree jq httpie lsb-release \
@@ -31,6 +22,7 @@ RUN set -ex \
     | tar zxf - -C /usr/local/bin just
 
 # conf
+COPY sources.list /etc/apt/sources.list
 COPY home /root/
 
 WORKDIR /root
