@@ -42,6 +42,19 @@ function slam {
     done
 }
 
+case $(uname -sm) in
+    Darwin\ *64 )
+        function after { lsof -p $1 +r 1 &>/dev/null }
+    ;;
+    Linux\ *64 )
+        function after { tail --pid=$1 -f /dev/null }
+    ;;
+    * )
+        function after {}
+    ;;
+esac
+
+
 function receipt {
     local msg
     local err
