@@ -6,10 +6,10 @@ RUN set -ex \
   ; apt-get update \
   ; apt-get upgrade -y \
   ; DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends ca-certificates \
+    apt-get install -y --no-install-recommends ca-certificates lsb-release \
       dpkg tzdata sudo wget iproute2 openssh-client mlocate procps \
       curl bzip2 unzip grep sed git zsh neovim build-essential \
-      tree jq httpie lsb-release \
+      tree jq httpie \
       inetutils-ping net-tools telnet netcat rsync \
   ; ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
   ; echo "$TIMEZONE" > /etc/timezone \
