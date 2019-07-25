@@ -16,10 +16,12 @@ RUN set -ex \
   ; sed -i 's/^.*\(%sudo.*\)ALL$/\1NOPASSWD:ALL/g' /etc/sudoers \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-ENV just_version=0.4.4
+ENV just_version=0.4.4 watchexec_version=1.10.2
 RUN set -ex \
   ; wget -q -O- https://github.com/casey/just/releases/download/v${just_version}/just-v${just_version}-x86_64-unknown-linux-musl.tar.gz \
-    | tar zxf - -C /usr/local/bin just
+    | tar zxf - -C /usr/local/bin just \
+  ; wget -q -O- https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.gz \
+    | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec
 
 # conf
 COPY sources.list /etc/apt/sources.list

@@ -9,6 +9,8 @@ function cfg.tgz {
     cp $CFG/_vimrc $tmp/.config/nvim/init.vim
     cp $CFG/.kubectl.zsh $tmp/
     cp $CFG/_tmux.conf $tmp/.tmux.conf
+    mkdir -p $tmp/.local/bin
+    cp /usr/local/bin/{just,watchexec} $tmp/.local/bin
     cp -r $CFG/.fzf/ $tmp/
     #tar hzcvf - --transform 's|^_\(.*\)|.\1|' -C $CFG _zshrc .zshrc.d/ _vimrc .ext.zsh .kubectl.zsh _tmux.conf .fzf/
     tar hzcvf - --transform "s|^$d\(.*\)|\1|" -C /tmp/cfg $d
