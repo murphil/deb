@@ -1,4 +1,4 @@
-alias p="pm2"
+alias pm="pm2"
 alias psr="pm2 startOrReload pm2.yml"
 alias pls="pm2 list"
 alias plg="pm2 log"

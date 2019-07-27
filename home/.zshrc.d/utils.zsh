@@ -1,19 +1,19 @@
-alias pc='proxychains4 -q'
+#[Esc][h] man 当前命令时，显示简短说明
+alias run-help >&/dev/null && unalias run-help
+autoload run-help
+
 # -L 只追踪相对链接 -E 添加 html 后缀
 alias sget='wget -m -k -E -p -np -e robots=off'
 alias aria2rpc='aria2c --max-connection-per-server=8 --min-split-size=10M --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all'
 alias lo="lsof -nP -i"
-
-#[Esc][h] man 当前命令时，显示简短说明
-alias run-help >&/dev/null && unalias run-help
-autoload run-help
+alias pc='proxychains4 -q'
 
 #历史命令 top10
 alias top10='print -l  ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
 function timeconv { date -d @$1 +"%Y-%m-%d %T" }
 
-function srh {
+function sch {
     grep -rnw '.' -e $1
 }
 
@@ -28,10 +28,6 @@ function findBigFiles {
     find . -type f -size +$1 -print0 | xargs -0 du -h | sort -nr
 }
 
-show-alias () {
-    alias | grep ${1:-'.*'} | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort
-}
-
 function slam {
     local n=0
     until eval $*
@@ -41,18 +37,6 @@ function slam {
         sleep 1
     done
 }
-
-case $(uname -sm) in
-    Darwin\ *64 )
-        function after { lsof -p $1 +r 1 &>/dev/null }
-    ;;
-    Linux\ *64 )
-        function after { tail --pid=$1 -f /dev/null }
-    ;;
-    * )
-        function after {}
-    ;;
-esac
 
 
 function receipt {

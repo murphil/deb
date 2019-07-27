@@ -13,5 +13,5 @@ alias sad='ssh-add'
 alias t='tmux'
 alias rs="rsync -avP"
 alias duh='du -h'
-alias pga='pgrep -a '
-alias px='ps aux | grep -i '
+function px { ps aux | grep -i "$*" }
+function p { pgrep -a "$*" }
