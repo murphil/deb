@@ -8,7 +8,7 @@ CFG=${$(readlink -f $ZSHRC)%/*}
 
 () {
     local i
-    for i in $(ls $CFG/.zshrc.d/[^_]*.zsh); do
+    for i in $CFG/.zshrc.d/[^_]*.zsh; do
         source $i
     done
 }

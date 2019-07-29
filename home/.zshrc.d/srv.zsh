@@ -1,6 +1,7 @@
 function cfg.tgz {
-    local d=`date +"%Y%m%d%H%M%S"`
+    local d=$(date +"%Y%m%d%H%M%S")
     local tmp="/tmp/cfg/$d"
+    local o=$(pwd)
     mkdir -p $tmp
     cp $CFG/_zshrc $tmp/.zshrc
     cp -r $CFG/.zshrc.d $tmp/.zshrc.d
@@ -12,8 +13,10 @@ function cfg.tgz {
     mkdir -p $tmp/.local/bin
     cp /usr/local/bin/{just,watchexec} $tmp/.local/bin
     cp -r $CFG/.fzf/ $tmp/
-    #tar hzcvf - --transform 's|^_\(.*\)|.\1|' -C $CFG _zshrc .zshrc.d/ _vimrc .ext.zsh .kubectl.zsh _tmux.conf .fzf/
-    tar hzcvf - --transform "s|^$d\(.*\)|\1|" -C /tmp/cfg $d
+    #tar hzcvf - --transform "s|^$d\(.*\)|\1|" -C /tmp/cfg $d
+    cd $tmp
+    tar hzcvf - $(sh -c 'ls -A')
+    cd $o
     rm -rf $tmp
 }
 

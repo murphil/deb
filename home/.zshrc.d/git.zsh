@@ -21,5 +21,8 @@ alias ga='git add .'
 alias gut='git reset HEAD --'
 alias grhh='git reset --hard HEAD'
 alias glst='git log -1 HEAD'
+alias gt='git tag'
+alias gta='git tag -a'
+alias gtd='git tag -d'
 alias ggc='git reflog expire --all --expire=now && git gc --prune=now --aggressive'
 
