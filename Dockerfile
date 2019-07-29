@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:10-slim
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TIMEZONE=Asia/Shanghai
 
