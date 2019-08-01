@@ -1,0 +1,11 @@
+FROM nnurphy/deb
+
+RUN version=2019-07-28 \
+  ; wget -O- https://bellard.org/quickjs/quickjs-${version}.tar.xz \
+        | tar Jxf - \
+  ; cd quickjs-${version} \
+  ; sed -i 's!CONFIG_M32=y!!' Makefile \
+  ; make \
+  ; make install \
+  ; cd .. \
+  ; rm -rf quickjs-${version}
