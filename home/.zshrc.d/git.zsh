@@ -8,6 +8,11 @@ alias gb='git branch'
 alias gbd='git branch -D'
 alias gpl='git pull'
 alias gps='git push'
+function gpsu {
+    local default='origin'
+    eval $__default_indirect_object
+    echo git push -u $y $z
+}
 alias gl='git log'
 alias glp='git log -p'
 alias gly='git log --since=yesterday'
@@ -24,8 +29,16 @@ alias glst='git log -1 HEAD'
 alias gt='git tag'
 alias gta='git tag -a'
 alias gtd='git tag -d'
-function gtdr { git push ${2:-origin} :refs/tags/$1 }
+function gtdr {
+    local default='origin'
+    eval $__default_indirect_object
+    git push $y :refs/tags/$z
+}
 alias ggc='git reflog expire --all --expire=now && git gc --prune=now --aggressive'
-function grad { git remote add ${2:-origin} $1 }
+function grad {
+    local default='origin'
+    eval $__default_indirect_object
+    git remote add $y $z
+}
 function gcf  { vim .git/config }
 
