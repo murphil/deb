@@ -24,5 +24,8 @@ alias glst='git log -1 HEAD'
 alias gt='git tag'
 alias gta='git tag -a'
 alias gtd='git tag -d'
+function gtdr { git push ${2:-origin} :refs/tags/$1 }
 alias ggc='git reflog expire --all --expire=now && git gc --prune=now --aggressive'
+function grad { git remote add ${2:-origin} $1 }
+function gcf  { vim .git/config }
 
