@@ -11,7 +11,7 @@ alias gps='git push'
 function gpsu {
     local default='origin'
     eval $__default_indirect_object
-    echo git push -u $y $z
+    git push -u $y $z
 }
 alias gl='git log'
 alias glp='git log -p'
