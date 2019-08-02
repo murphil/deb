@@ -1,3 +1,4 @@
+FROM nnurphy/qjs:deb-all as q
 FROM debian:10-slim
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TIMEZONE=Asia/Shanghai
@@ -16,6 +17,7 @@ RUN set -ex \
   ; sed -i 's/^.*\(%sudo.*\)ALL$/\1NOPASSWD:ALL/g' /etc/sudoers \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
+COPY --from=q /usr/local/bin/qjsbn /usr/local/bin/qjs
 ENV just_version=0.4.4 watchexec_version=1.10.3
 RUN set -ex \
   ; wget -q -O- https://github.com/casey/just/releases/download/v${just_version}/just-v${just_version}-x86_64-unknown-linux-musl.tar.gz \

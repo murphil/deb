@@ -1,2 +1,0 @@
-FROM nnurphy/qjs:deb-all as q
-COPY --from=q /usr/local/bin/qjsbn /usr/local/bin/qjs
