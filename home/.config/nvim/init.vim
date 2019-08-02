@@ -1,8 +1,6 @@
-"运行在非兼容(VI)模式下(命令模式下 TAB 补全)
 set nocompatible
 
 set guifont=Source_Code_Pro:h11:w7
-"set guifontwide=NSimSun-18030,NSimSun
 set linespace=2
 
 syntax on
@@ -27,13 +25,10 @@ set ruler
 "显示不完整的段落
 set display=lastline
 "自动折行
-"set nowrap
 set wrap
 "按完整单词折行
 set nolinebreak
-"set linebreak
 "行宽（输入时自动插入换行符）
-"set textwidth=80
 set textwidth=0
 "j k 在屏幕行间上下移动；gj gk 在物理行间上下移动
 noremap j gj
@@ -44,11 +39,9 @@ noremap gk k
 let mapleader="\<Space>"
 
 
-"将缩进转换为空格
 set expandtab
-"设定自动缩进(新行与前一行缩进相同)
-"set autoindent
-set noautoindent
+set shiftwidth=4
+set autoindent
 "插入模式下，“←”如何删除光标前的字符：行首空白、换行符、插入点之前的字符
 set backspace=indent,eol,start
 "粘贴模式
