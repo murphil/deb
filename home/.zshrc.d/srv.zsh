@@ -12,6 +12,7 @@ function cfg.tgz {
     cp $CFG/_tmux.conf $tmp/.tmux.conf
     mkdir -p $tmp/.local/bin
     cp /usr/local/bin/{just,watchexec} $tmp/.local/bin
+    cp /usr/local/bin/qjsbn $tmp/.local/bin/qjs
     cp -r $CFG/.fzf/ $tmp/
     #tar hzcvf - --transform "s|^$d\(.*\)|\1|" -C /tmp/cfg $d
     cd $tmp
