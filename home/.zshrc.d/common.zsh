@@ -1,7 +1,7 @@
 alias rm='rm -i'
 alias ll='ls -l'
 alias mdp='mkdir -p'
-alias grep='grep --color=auto'
+alias f='grep --color=auto'
 alias diff='diff -u'
 alias e='nvim'
 alias v='nvim'
