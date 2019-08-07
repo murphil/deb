@@ -3,6 +3,8 @@ FROM debian:10-slim
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TIMEZONE=Asia/Shanghai
 
+COPY home /root/
+
 RUN set -ex \
   ; apt-get update \
   ; apt-get upgrade -y \
@@ -27,7 +29,6 @@ RUN set -ex \
 
 # conf
 COPY sources.list /etc/apt/sources.list
-COPY home /root/
 
 WORKDIR /root
 
