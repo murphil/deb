@@ -3,7 +3,9 @@ FROM debian:10-slim
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 TIMEZONE=Asia/Shanghai
 
+# conf
 COPY home /root/
+COPY sources.list /etc/apt/sources.list.tuna
 
 RUN set -ex \
   ; apt-get update \
@@ -27,8 +29,6 @@ RUN set -ex \
   ; wget -q -O- https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.gz \
     | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec
 
-# conf
-COPY sources.list /etc/apt/sources.list.tuna
 
 WORKDIR /root
 
