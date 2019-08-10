@@ -28,7 +28,7 @@ RUN set -ex \
     | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec
 
 # conf
-COPY sources.list /etc/apt/sources.list
+COPY sources.list /etc/apt/sources.list.tuna
 
 WORKDIR /root
 
