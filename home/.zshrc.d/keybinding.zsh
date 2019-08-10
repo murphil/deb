@@ -55,9 +55,10 @@ bindkey "\r" user-ret
 
 user-spc(){
     # 首字母非空格，以空格结尾 && 光标在行末
-    if [[ $BUFFER =~ "^[^ ].* $" ]] && [[ $RBUFFER == "" ]] ;then
-        BUFFER=${BUFFER}"~"
-        zle end-of-line
+    if [[ $LBUFFER =~ "[^~ ]+ $" ]] ;then
+        LBUFFER=${LBUFFER}"~"
+        zle backward-char
+        zle forward-char
         zle expand-or-complete
     else
         zle magic-space
