@@ -2,7 +2,7 @@
 setopt INTERACTIVE_COMMENTS
 
 #启用自动 cd，输入目录名回车进入目录
-#setopt AUTO_CD
+setopt AUTO_CD
 
 #扩展路径
 #/v/c/p/p => /var/cache/pacman/pkg

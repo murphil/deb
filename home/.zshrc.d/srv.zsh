@@ -1,3 +1,8 @@
+function gen-wg-key {
+    umask 077 # default: 022
+    wg genkey | tee ${1:-wg} | wg pubkey > ${1:-wg}.pub
+}
+
 function cfg.tgz {
     local d=$(date +"%Y%m%d%H%M%S")
     local tmp="/tmp/cfg/$d"

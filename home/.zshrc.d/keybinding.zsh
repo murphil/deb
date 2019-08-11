@@ -1,4 +1,3 @@
-##空行(光标在行首)补全 "cd "
 user-tab(){
     case $BUFFER in
         "" )                       # 空行填入 "cd "
@@ -54,7 +53,6 @@ zle -N user-ret
 bindkey "\r" user-ret
 
 user-spc(){
-    # 首字母非空格，以空格结尾 && 光标在行末
     if [[ $LBUFFER =~ "[^~ ]+ $" ]] ;then
         LBUFFER=${LBUFFER}"~"
         zle backward-char
