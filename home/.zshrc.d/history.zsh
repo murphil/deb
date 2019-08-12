@@ -18,3 +18,9 @@ setopt PUSHD_IGNORE_DUPS
 
 #在命令前添加空格，不将此命令添加到纪录文件中
 #setopt HIST_IGNORE_SPACE
+
+source $CFG/.zshrc.d/histdb/sqlite-history.zsh
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd histdb-update-outcome
+source $CFG/.zshrc.d/histdb/histdb-interactive.zsh
+bindkey '\C-r' _histdb-isearch

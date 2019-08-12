@@ -96,5 +96,5 @@ zle -N user-esc
 bindkey "\e\e" user-esc
 
 bindkey "\C-q" push-line-or-edit
-bindkey "\C-r" history-incremental-pattern-search-backward
-bindkey "\C-s" history-incremental-pattern-search-forward
+#bindkey "\C-r" history-incremental-pattern-search-backward
+#bindkey "\C-s" history-incremental-pattern-search-forward
