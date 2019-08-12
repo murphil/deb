@@ -1,6 +1,6 @@
 user-tab(){
     case $BUFFER in
-        "" )                       # 空行填入 "cd "
+        "" )                       # "" -> "cd "
             BUFFER="cd "
             zle end-of-line
             zle expand-or-complete
@@ -9,12 +9,12 @@ user-tab(){
             BUFFER="!?"
             zle end-of-line
             ;;
-        "cd --" )                  # "cd --" 替换为 "cd +"
+        "cd --" )                  # "cd --" -> "cd +"
             BUFFER="cd +"
             zle end-of-line
             zle expand-or-complete
             ;;
-        "cd +-" )                  # "cd +-" 替换为 "cd -"
+        "cd +-" )                  # "cd +-" -> "cd -"
             BUFFER="cd -"
             zle end-of-line
             zle expand-or-complete
@@ -41,7 +41,7 @@ user-ret(){
         zle end-of-line
         zle accept-line
     elif [[ $BUFFER =~ "\.\.\.+" ]] ;then
-        # <1> . 替换为 .. <2> " ../" 替换为 " " <3> // 替换为 /
+        # <1> . -> ../ <2> " ../" -> " " <3> // -> /
         BUFFER=${${${BUFFER//\./\.\.\/}// \.\.\// }//\/\//\/}
         zle end-of-line
         zle accept-line
