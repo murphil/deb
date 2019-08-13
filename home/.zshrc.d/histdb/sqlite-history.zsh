@@ -1,3 +1,6 @@
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+
+
 which sqlite3 >/dev/null 2>&1 || return;
 
 typeset -g HISTDB_QUERY=""
@@ -61,10 +64,10 @@ histdb-update-outcome () {
 
     _histdb_init
     _histdb_query <<EOF
-update history set 
-      exit_status = ${retval}, 
+update history set
+      exit_status = ${retval},
       duration = ${finished} - start_time
-where id = (select max(id) from history) and 
+where id = (select max(id) from history) and
       session = ${HISTDB_SESSION} and
       exit_status is NULL;
 EOF
