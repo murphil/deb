@@ -28,19 +28,19 @@ zle -N user-tab
 bindkey "\t" user-tab
 
 user-ret(){
-    if [[ $BUFFER = "" ]] ;then
+    if [[ $BUFFER = "" ]]; then
         BUFFER="ls"
         zle end-of-line
         zle accept-line
-    elif [[ $BUFFER = " " ]] ;then
+    elif [[ $BUFFER = " " ]]; then
         BUFFER="ls -lh"
         zle end-of-line
         zle accept-line
-    elif [[ $BUFFER = "  " ]] ;then
+    elif [[ $BUFFER = "  " ]]; then
         BUFFER="ls -lah"
         zle end-of-line
         zle accept-line
-    elif [[ $BUFFER =~ "\.\.\.+" ]] ;then
+    elif [[ $BUFFER =~ "\.\.\.+" ]]; then
         # <1> . -> ../ <2> " ../" -> " " <3> // -> /
         BUFFER=${${${BUFFER//\./\.\.\/}// \.\.\// }//\/\//\/}
         zle end-of-line
@@ -53,7 +53,8 @@ zle -N user-ret
 bindkey "\r" user-ret
 
 user-spc(){
-    if [[ $LBUFFER =~ "[^~ ]+ $" ]] ;then
+    # cursor (behind && over) space && not behind ~
+    if [[ $LBUFFER =~ ".*[^ ~] +$" ]] && [[ ( $RBUFFER == "" ) || ( $RBUFFER =~ "^ .*" ) ]]; then
         LBUFFER=${LBUFFER}"~"
         zle backward-char
         zle forward-char
@@ -66,7 +67,7 @@ zle -N user-spc
 bindkey " " user-spc
 
 user-bspc-word(){
-    if [[ $BUFFER = "" ]] ;then
+    if [[ $BUFFER = "" ]]; then
         BUFFER="popd"
         zle accept-line
     else
@@ -77,7 +78,7 @@ zle -N user-bspc-word
 bindkey "\C-w" user-bspc-word
 
 user-bspc(){
-    if [[ $BUFFER = "" ]] ;then
+    if [[ $BUFFER = "" ]]; then
         BUFFER="cd .."
         zle accept-line
     else
