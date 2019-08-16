@@ -92,7 +92,12 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
         usbmux uucp vcsa wwwrun xfs '_*' 'nixbld*'
 
-#显示 path-directories ，避免候选项唯一时直接选中
-cdpath=($HOME)
+# ignore uninteresting hosts
+zstyle ':completion:*:*:*:hosts' ignored-patterns \
+        loopback ip6-localhost ip6-loopback localhost6 localhost6.localdomain6 localhost.localdomain
 
+## ignores filenames already in the line
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
 
+## Ignore completion functions for commands you don't have:
+zstyle ':completion:*:functions' ignored-patterns '_*'
