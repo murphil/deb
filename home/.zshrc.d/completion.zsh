@@ -33,7 +33,7 @@ zstyle ':completion:*' squeeze-slashes 'yes'
 zstyle ':completion::complete:*' '\\'
 
 # Complete . and .. special directories
-# zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' special-dirs true
 
 #补全类型提示分组
 zstyle ':completion:*:matches' group 'yes'
