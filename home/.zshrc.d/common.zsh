@@ -16,3 +16,10 @@ alias duh='du -h'
 function px { ps aux | grep -i "$*" }
 function p { pgrep -a "$*" }
 __default_indirect_object="local z=\${@: -1} y=\$1 && [[ \$z == \$1 ]] && y=\"\$default\""
+
+export NOW
+currdatetime() {
+    NOW=$(date +%Y%m%d%H%M%S)
+}
+autoload -U add-zsh-hook
+add-zsh-hook preexec currdatetime

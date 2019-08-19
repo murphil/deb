@@ -7,9 +7,8 @@ alias dpa="docker ps -a"
 alias dl="docker logs -ft"
 alias dpl="docker pull"
 alias dps="docker push"
-alias dr="docker run --rm -t -i -d"
 alias drr="docker run --rm -v \$(pwd):/world"
-alias dri="docker run --rm -t -i -v \$(pwd):/world"
+alias dr="docker run --rm -it -v \$(pwd):/world"
 alias dcs="docker container stop"
 alias dcr="docker container rm"
 alias dsp="docker system prune -f"
@@ -30,25 +29,15 @@ alias dcud="docker-compose up -d"
 alias dcd="docker-compose down"
 
 function da {
-    docker exec -it $1          \
-        /bin/sh -c "[ -e /bin/zsh ] && /bin/zsh || [ -e /bin/bash ] && /bin/bash || /bin/sh"
+    if [ $# -gt 1 ]; then
+        docker exec -it $@
+    else
+        docker exec -it $1 /bin/sh -c "[ -e /bin/zsh ] && /bin/zsh || [ -e /bin/bash ] && /bin/bash || /bin/sh"
+    fi
 }
 
 function dcsr {
-    docker container stop $1 && docker container rm $1
-}
-
-function dvbk {
     local i
     for i in $*
-        docker run --rm -it -v $(pwd):/backup -v ${i}:/data alpine  tar zcvf /backup/${i}_`date +%Y%m%d%H%M%S`.tar.gz -C /data .
-}
-
-function dvrs {
-    docker volume create $2
-    docker run --rm -it -v $(pwd):/backup -v $2:/data alpine  tar zxvf /backup/$1 -C /data
-}
-
-function dvis {
-    docker run -it --rm -v $1:/data -w /data alpine
+        docker container stop $i && docker container rm $i
 }
