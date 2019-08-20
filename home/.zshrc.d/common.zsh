@@ -19,7 +19,7 @@ __default_indirect_object="local z=\${@: -1} y=\$1 && [[ \$z == \$1 ]] && y=\"\$
 
 export NOW
 currdatetime() {
-    NOW=$(date +%Y%m%d%H%M%S)
+    NOW=$(date +%y%m%d-%H%M%S)
 }
 autoload -U add-zsh-hook
 add-zsh-hook preexec currdatetime
