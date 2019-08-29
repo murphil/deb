@@ -5,10 +5,6 @@ user-tab(){
             zle end-of-line
             zle expand-or-complete
             ;;
-        " " )
-            BUFFER="!?"
-            zle end-of-line
-            ;;
         "cd --" )                  # "cd --" -> "cd +"
             BUFFER="cd +"
             zle end-of-line
@@ -58,6 +54,10 @@ user-spc(){
         LBUFFER=${LBUFFER}"~"
         zle backward-char
         zle forward-char
+        zle expand-or-complete
+    elif  [[ $BUFFER == "" ]]; then
+        BUFFER="${RUNNER} "
+        zle end-of-line
         zle expand-or-complete
     else
         zle magic-space

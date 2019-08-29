@@ -1,4 +1,4 @@
-alias dk="docker"
+alias d="docker"
 alias di="docker images"
 alias drmi="docker rmi"
 alias dt="docker tag"
