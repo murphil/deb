@@ -15,18 +15,16 @@ function px { ps aux | grep -i "$*" }
 function p { pgrep -a "$*" }
 __default_indirect_object="local z=\${@: -1} y=\$1 && [[ \$z == \$1 ]] && y=\"\$default\""
 
-if (( $+commands[just] )) ; then
+
+if [ -x "$(command -v just)" ]; then
     export RUNNER=just
 fi
 
-if (( $+commands[nvim] )) ; then
-    export EDITOR=nvim
+if [ -x "$(command -v nvim)" ]; then
     alias v='nvim'
-elif (( $+commands[vim] )) ; then
-    export EDITOR=vim
+elif [ -x "$(command -v vim)" ]; then
     alias v='vim'
 else
-    export EDITOR=vi
     alias v='vi'
 fi
 
