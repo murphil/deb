@@ -10,6 +10,11 @@ user-tab(){
             zle end-of-line
             zle expand-or-complete
             ;;
+        "  " )
+            BUFFER="task "
+            zle end-of-line
+            zle expand-or-complete
+            ;;
         "cd --" )                  # "cd --" -> "cd +"
             BUFFER="cd +"
             zle end-of-line
