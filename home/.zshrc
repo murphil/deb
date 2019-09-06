@@ -13,8 +13,6 @@ CFG=${$(readlink -f $ZSHRC)%/*}
     done
 }
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-
 if [[ ! "$PATH" == *${HOME}/.local/bin* ]]; then
     export PATH=${HOME}/.local/bin:$PATH
 fi
