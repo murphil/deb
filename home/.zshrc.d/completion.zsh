@@ -101,3 +101,5 @@ zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
 
 ## Ignore completion functions for commands you don't have:
 zstyle ':completion:*:functions' ignored-patterns '_*'
+
+#fpath=($CFG/.zshrc.d/compdef $fpath)

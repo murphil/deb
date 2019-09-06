@@ -41,3 +41,36 @@ function dcsr {
     for i in $*
         docker container stop $i && docker container rm $i
 }
+
+_dgcn () {
+    _alternative 'c:containers:($(docker container ls -q))'
+}
+compdef _dgcn da dcsr
+
+function dvbk {
+    for i in $*
+        docker run --rm        \
+            -v $(pwd):/backup  \
+            -v ${i}:/data      \
+            alpine             \
+            tar zcvf /backup/vol_${i}_`date +%Y%m%d%H%M%S`.tar.gz -C /data .
+}
+
+_dvlq () {
+    _alternative "docker volumes:volume:($(docker volume ls -q))"
+}
+compdef _dvlq dvbk
+
+function dvrs {
+    docker volume create $2
+    docker run --rm            \
+            -v $(pwd):/backup  \
+            -v $2:/data        \
+            alpine             \
+            tar zxvf /backup/$1 -C /data
+}
+
+_dvrs () {
+    _arguments '1:backup file:_files' '2:volume:_dvlq'
+}
+compdef _dvrs dvrs
