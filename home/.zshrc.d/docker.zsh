@@ -43,7 +43,15 @@ function dcsr {
 }
 
 _dgcn () {
-    _alternative 'c:containers:($(docker container ls -q))'
+    local dsc=()
+    while read -r line; do
+        local rest=$(echo $line | awk '{$1="";$2=""; print $0;}')
+        local id=$(echo $line | awk '{print $1;}')
+        local name=$(echo $line | awk '{print $2;}')
+        dsc+="$name:$rest"
+        dsc+="$id:$rest"
+    done <<< $(docker container ls --format '{{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t')
+    _describe containers dsc
 }
 compdef _dgcn da dcsr
 
