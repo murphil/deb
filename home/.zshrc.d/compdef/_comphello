@@ -1,0 +1,3 @@
+#compdef comphello
+
+_describe 'describe' '(hello world)'

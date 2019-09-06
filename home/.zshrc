@@ -6,6 +6,8 @@ fi
 
 CFG=${$(readlink -f $ZSHRC)%/*}
 
+fpath=($CFG/.zshrc.d/compdef $fpath)
+
 () {
     local i
     for i in $CFG/.zshrc.d/[^_]*.zsh; do
