@@ -1,6 +1,9 @@
 alias rm='rm -i'
-alias ll='ls -l'
-alias mdp='mkdir -p'
+alias mv='mv -i'
+alias ll='ls -alh'
+alias du='du -h'
+alias df='df -h'
+alias mkdir='mkdir -p'
 alias r='grep --color=auto'
 alias diff='diff -u'
 alias e='code'
@@ -10,7 +13,6 @@ alias sa='ssh-agent $SHELL'
 alias sad='ssh-add'
 alias t='tmux'
 alias rs="rsync -avP"
-alias duh='du -h'
 function px { ps aux | grep -i "$*" }
 function p { pgrep -a "$*" }
 __default_indirect_object="local z=\${@: -1} y=\$1 && [[ \$z == \$1 ]] && y=\"\$default\""
