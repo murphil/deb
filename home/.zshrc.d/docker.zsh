@@ -15,7 +15,8 @@ alias dsp="docker system prune -f"
 alias dspa="docker system prune --all --force --volumes"
 alias dvi="docker volume inspect"
 alias dvr="docker volume rm"
-alias dvp="docker volume prune"
+#alias dvp="docker volume prune"
+alias dvp="docker volume rm $(docker volume ls -q | awk -F, 'length($0) == 64 { print }')"
 alias dvl="docker volume ls"
 alias dvc="docker volume create"
 alias dsv="docker save"
@@ -65,7 +66,7 @@ function dvbk {
 }
 
 _dvlq () {
-    _alternative "docker volumes:volume:($(docker volume ls -q))"
+    _alternative "docker volumes:volume:($(docker volume ls -q | awk -F, 'length($0) != 64 { print }'))"
 }
 compdef _dvlq dvbk
 
