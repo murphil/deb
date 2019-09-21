@@ -7,14 +7,14 @@ ENV TIMEZONE=Asia/Shanghai
 
 # conf
 COPY home /root/
-COPY sources.list /etc/apt/sources.list.tuna
 
 RUN set -ex \
+  ; sed -i 's/\(.*\)\(security\|deb\).debian.org\(.*\)main/\1ftp2.cn.debian.org\3main contrib non-free/g' /etc/apt/sources.list \
   ; apt-get update \
   ; apt-get upgrade -y \
   ; DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends ca-certificates lsb-release \
-      dpkg tzdata sudo wget iproute2 openssh-client mlocate procps \
+      dpkg tzdata sudo wget iproute2 openssh-client openssh-server mlocate procps \
       curl bzip2 unzip grep sed git zsh neovim build-essential \
       tree jq sqlite3 \
       inetutils-ping net-tools telnet netcat rsync \
