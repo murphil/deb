@@ -26,10 +26,12 @@ RUN set -ex \
 
 COPY --from=q /usr/local/bin/qjsbn /usr/local/bin/qjs
 ENV just_version=0.4.4 watchexec_version=1.10.3
+ARG just_url=https://github.com/casey/just/releases/download/v${just_version}/just-v${just_version}-x86_64-unknown-linux-musl.tar.gz
+ARG watchexec_url=https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.gz
 RUN set -ex \
-  ; wget -q -O- https://github.com/casey/just/releases/download/v${just_version}/just-v${just_version}-x86_64-unknown-linux-musl.tar.gz \
+  ; wget -q -O- ${just_url} \
     | tar zxf - -C /usr/local/bin just \
-  ; wget -q -O- https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.gz \
+  ; wget -q -O- ${watchexec_url} \
     | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec
 
 
