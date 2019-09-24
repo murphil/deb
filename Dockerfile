@@ -16,12 +16,12 @@ RUN set -ex \
     apt-get install -y --no-install-recommends ca-certificates lsb-release \
       dpkg tzdata sudo wget iproute2 openssh-client openssh-server mlocate procps \
       curl bzip2 unzip grep sed git zsh neovim build-essential \
-      tree jq sqlite3 \
+      bash tree jq sqlite3 \
       inetutils-ping net-tools telnet netcat rsync \
   ; ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
   ; echo "$TIMEZONE" > /etc/timezone \
   ; sed -i 's/^.*\(%sudo.*\)ALL$/\1NOPASSWD:ALL/g' /etc/sudoers \
-  ; mkdir -p /run/sshd \
+  ; sed -i 's!.*\(AuthorizedKeysFile\).*!\1 /etc/authorized_keys/%u!' /etc/ssh/sshd_config \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 COPY --from=q /usr/local/bin/qjsbn /usr/local/bin/qjs
@@ -35,4 +35,5 @@ RUN set -ex \
 
 WORKDIR /root
 
-CMD [ "/bin/zsh" ]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
