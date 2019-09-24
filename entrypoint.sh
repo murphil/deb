@@ -17,7 +17,7 @@ print_fingerprints() {
 }
 
 init() {
-    if [[ "${OVERRIDE_HOST_KEYS}" == "true" ]]; then
+    if [[ "${SSH_OVERRIDE_HOST_KEYS}" == "true" ]]; then
         rm -rf /etc/ssh/ssh_host_*
     fi
     # Generate Host keys, if required
@@ -81,7 +81,7 @@ init() {
     fi
 
     # Enable GatewayPorts
-    if [[ "${GATEWAY_PORTS}" == "true" ]]; then
+    if [[ "${SSH_GATEWAY_PORTS}" == "true" ]]; then
         sed -i 's/.*\(GatewayPorts\).*/\1 yes/' /etc/ssh/sshd_config
     fi
 }
