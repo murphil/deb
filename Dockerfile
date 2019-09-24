@@ -37,5 +37,10 @@ RUN set -ex \
 
 WORKDIR /root
 
+ENV SSH_USERS=
+ENV SSH_ENABLE_ROOT=
+ENV GATEWAY_PORTS=
+ENV OVERRIDE_HOST_KEYS=
+
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
