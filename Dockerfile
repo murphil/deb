@@ -13,11 +13,12 @@ RUN set -ex \
   ; apt-get update \
   ; apt-get upgrade -y \
   ; DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends ca-certificates lsb-release \
-      dpkg tzdata sudo wget iproute2 openssh-client openssh-server mlocate procps \
-      curl bzip2 unzip grep sed git zsh neovim build-essential \
-      tmux bash tree jq sqlite3 \
-      inetutils-ping net-tools telnet netcat rsync \
+    apt-get install -y --no-install-recommends \
+      dpkg tzdata ca-certificates lsb-release \
+      sudo mlocate procps grep sed tree jq bzip2 unzip \
+      git zsh neovim tmux sqlite3 bash build-essential \
+      inetutils-ping net-tools iproute2 telnet netcat \
+      curl wget rsync openssh-client openssh-server \
   ; ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
   ; echo "$TIMEZONE" > /etc/timezone \
   ; sed -i 's/^.*\(%sudo.*\)ALL$/\1NOPASSWD:ALL/g' /etc/sudoers \
