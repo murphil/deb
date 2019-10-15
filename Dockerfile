@@ -26,14 +26,17 @@ RUN set -ex \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 COPY --from=q /usr/local/bin/qjsbn /usr/local/bin/qjs
-ENV just_version=0.4.4 watchexec_version=1.10.3
+ENV just_version=0.4.4 watchexec_version=1.10.3 ycat_version=0.2.5
 ARG just_url=https://github.com/casey/just/releases/download/v${just_version}/just-v${just_version}-x86_64-unknown-linux-musl.tar.gz
 ARG watchexec_url=https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.gz
+ARG ycat_url=https://github.com/alxarch/ycat/releases/download/v${ycat_version}/ycat_${ycat_version}_Linux_x86_64.tar.gz
 RUN set -ex \
   ; wget -q -O- ${just_url} \
     | tar zxf - -C /usr/local/bin just \
   ; wget -q -O- ${watchexec_url} \
-    | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec
+    | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec \
+  ; wget -q -O- ${ycat_url} \
+    | tar zxf - -C /usr/local/bin ycat
 
 
 WORKDIR /root

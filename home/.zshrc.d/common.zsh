@@ -30,9 +30,6 @@ else
     alias v='vi'
 fi
 
-export NOW
-currdatetime() {
-    NOW=$(date +%y%m%d%H%M%S)
-}
-autoload -U add-zsh-hook
-add-zsh-hook preexec currdatetime
+export TIME_STYLE=long-iso
+alias n='date +%y%m%d%H%M%S'
+alias now='date -Iseconds'
