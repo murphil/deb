@@ -10,6 +10,10 @@ user-tab(){
                 BUFFER="task "
             elif [ -f justfile ]; then
                 BUFFER="just "
+            elif [ -f Makefile ]; then
+                BUFFER="make "
+            else
+                return
             fi
             zle end-of-line
             zle expand-or-complete
