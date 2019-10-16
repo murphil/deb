@@ -18,3 +18,13 @@ _comp_just () {
 }
 
 compdef _comp_just just
+
+_comp_task () {
+    local -a subcmds
+    for i in $(ycat -oj Taskfile.yml | jq -r '.tasks | keys | join("\n")'); do
+        subcmds+=($i)
+    done
+    _describe 'tasks' subcmds
+}
+
+compdef _comp_task task

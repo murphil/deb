@@ -6,12 +6,11 @@ user-tab(){
             zle expand-or-complete
             ;;
         " " )
-            BUFFER="${RUNNER:-just} "
-            zle end-of-line
-            zle expand-or-complete
-            ;;
-        "  " )
-            BUFFER="task "
+            if [ -f Taskfile.yml ]; then
+                BUFFER="task "
+            elif [ -f justfile ]; then
+                BUFFER="just "
+            fi
             zle end-of-line
             zle expand-or-complete
             ;;

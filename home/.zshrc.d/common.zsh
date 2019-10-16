@@ -18,10 +18,6 @@ function p { pgrep -a "$*" }
 __default_indirect_object="local z=\${@: -1} y=\$1 && [[ \$z == \$1 ]] && y=\"\$default\""
 
 
-if [ -x "$(command -v just)" ]; then
-    export RUNNER=just
-fi
-
 if [ -x "$(command -v nvim)" ]; then
     alias v='nvim'
 elif [ -x "$(command -v vim)" ]; then
