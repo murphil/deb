@@ -1,5 +1,5 @@
 FROM nnurphy/qjs:deb-all as q
-FROM debian:10.1-slim
+FROM python:3.8-slim-buster
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
