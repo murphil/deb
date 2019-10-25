@@ -3,45 +3,6 @@ function gen-wg-key {
     wg genkey | tee ${1:-wg} | wg pubkey > ${1:-wg}.pub
 }
 
-function cfg.tgz {
-    local d=$(date +"%Y%m%d%H%M%S")
-    local tmp="/tmp/cfg/$d"
-    local o=$(pwd)
-    mkdir -p $tmp
-    cp $CFG/_zshrc $tmp/.zshrc
-    cp -r $CFG/.zshrc.d $tmp/.zshrc.d
-    cp $CFG/.ext.zsh $tmp/
-    mkdir -p $tmp/.config/nvim/
-    cp $CFG/_vimrc $tmp/.config/nvim/init.vim
-    cp $CFG/.kubectl.zsh $tmp/
-    cp $CFG/_tmux.conf $tmp/.tmux.conf
-    mkdir -p $tmp/.local/bin
-    cp /usr/local/bin/{just,watchexec,task,ycat} $tmp/.local/bin
-    cp /usr/local/bin/qjs $tmp/.local/bin/qjs
-    cp -r $CFG/.fzf/ $tmp/
-    #tar hzcvf - --transform "s|^$d\(.*\)|\1|" -C /tmp/cfg $d
-    cd $tmp
-    tar hzcvf - $(sh -c 'ls -A')
-    cd $o
-    rm -rf $tmp
-}
-
-function deploy-to-server {
-    #rsync -av -e ssh $rc $1:~/.zshrc
-    #rsync -av --delete -e ssh $CFG/.zshrc.d/ $1:~/.zshrc.d
-    #rsync -av -e ssh $CFG/.ext.zsh $1:~/.ext.zsh
-    #rsync -av -e ssh $CFG/.kubectl.zsh $1:~/.kubectl.zsh
-    #rsync -av -e ssh $CFG/_tmux.conf $1:~/.tmux.conf
-    #rsync -av --delete -e ssh $CFG/.fzf/ $1:~/.fzf
-    local cmd="cfg.tgz "
-    for i in $*
-        cmd+="| tee >(ssh $i 'tar zxf -') "
-    cmd+="> /dev/null"
-    echo $cmd
-    eval $cmd
-}
-compdef deploy-to-server=ssh
-
 function re-zsh {
     source ~/.zshrc
 }
