@@ -48,9 +48,9 @@ RUN set -ex \
   ; wget -q -O- ${task_url} \
     | tar zxf - -C /usr/local/bin task \
   ; wget -q -O /usr/local/bin/websocat ${websocat_url} \
-    ; chmod +x /usr/local/bin/websocat \
+    ; chmod a+x /usr/local/bin/websocat \
   ; wget -q -O /usr/local/bin/wstunnel ${wstunnel_url} \
-    ; chmod +x /usr/local/bin/wstunnel
+    ; chmod a+x /usr/local/bin/wstunnel
 
 
 WORKDIR /root
