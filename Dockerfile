@@ -27,7 +27,7 @@ RUN set -ex \
 
 COPY --from=q /usr/local/bin/qjsbn /usr/local/bin/qjs
 ENV just_version=0.4.4
-ENV watchexec_version=1.10.3
+ENV watchexec_version=1.11.0
 ENV ycat_version=0.2.5
 ENV task_version=3.0.0-preview2
 ENV websocat_version=1.5.0
