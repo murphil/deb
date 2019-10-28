@@ -33,7 +33,7 @@ ENV ycat_version=0.2.5
 ENV websocat_version=1.5.0
 ENV wstunnel_version=2.0
 ARG just_url=https://github.com/casey/just/releases/download/v${just_version}/just-v${just_version}-x86_64-unknown-linux-musl.tar.gz
-ARG watchexec_url=https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.gz
+ARG watchexec_url=https://github.com/watchexec/watchexec/releases/download/${watchexec_version}/watchexec-${watchexec_version}-x86_64-unknown-linux-musl.tar.xz
 ARG ycat_url=https://github.com/alxarch/ycat/releases/download/v${ycat_version}/ycat_${ycat_version}_Linux_x86_64.tar.gz
 #ARG task_url=https://github.com/go-task/task/releases/download/v${task_version}/task_linux_amd64.tar.gz
 ARG websocat_url=https://github.com/vi/websocat/releases/download/v${websocat_version}/websocat_amd64-linux-static+udp
@@ -42,7 +42,7 @@ RUN set -ex \
   ; wget -q -O- ${just_url} \
     | tar zxf - -C /usr/local/bin just \
   ; wget -q -O- ${watchexec_url} \
-    | tar zxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec \
+    | tar Jxf - --strip-components=1 -C /usr/local/bin watchexec-${watchexec_version}-x86_64-unknown-linux-musl/watchexec \
   ; wget -q -O- ${ycat_url} \
     | tar zxf - -C /usr/local/bin ycat \
   #; wget -q -O- ${task_url} \
