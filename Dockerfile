@@ -16,7 +16,7 @@ RUN set -ex \
     apt-get install -y --no-install-recommends \
       dpkg tzdata ca-certificates lsb-release \
       sudo mlocate procps grep sed tree jq zstd bzip2 unzip \
-      git zsh bash neovim tmux sqlite3 build-essential \
+      git zsh bash vim tmux sqlite3 build-essential \
       inetutils-ping net-tools iproute2 telnet netcat \
       curl wget rsync openssh-client openssh-server \
   ; ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
