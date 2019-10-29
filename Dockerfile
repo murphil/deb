@@ -14,8 +14,8 @@ RUN set -ex \
   ; apt-get upgrade -y \
   ; DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
-      dpkg tzdata ca-certificates lsb-release \
-      sudo mlocate procps grep sed tree jq zstd bzip2 unzip \
+      dpkg tzdata ca-certificates sudo mlocate procps \
+      grep sed tree jq zstd bzip2 unzip \
       git zsh bash vim tmux sqlite3 build-essential \
       inetutils-ping net-tools iproute2 telnet netcat \
       curl wget rsync openssh-client openssh-server \
